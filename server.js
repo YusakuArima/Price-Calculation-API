@@ -1,13 +1,40 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = 3000;
 /*const res = require('express/lib/response');
 const { json } = require('express/lib/response');*/
 
+const arrayObject = [
+    { id: 1, productName: 'T-Shirt', price: 4800},
+    { id: 2, productName: 'Jacket', price: 19800},
+    { id: 3, productName: 'Pants', price: 9800},
+];
+
 //Json返却
-app.get("/http://localhost:3000/api/cart?product_id=2&amount=1", (req, res) => {
-    res.json({items});
+app.get("/api/cart", (req, res) => {
+    const url = new URL(req);
+    const params = new URLSearchParams(url.search);
+    const productId = params.get('product_id');
+    const amount =params.get('amount'); 
+    const items = (productID, amount) => {
+        if(arrayObject[productID - 1] === undefined){
+            res.sendStatus = (404);
+        }else if(amount == 0){
+            res.sendStatus = (404);
+        }else{
+            res.json(`productName: ${arrayObject[productID - 1].productName}`);
+            res.json(`productId: ${productID}`);
+            res.json(`subtotal: ${amount}`);
+            res.json(`price: ${arrayObject[productID - 1].price*amount}`);
+        }
+    }
+    items(productId,amount)
+    res.send({items});
 });
+
+app.listen(PORT);
+
+/*
 
 //アプリ内データ
 const arrayObject = [
@@ -24,7 +51,6 @@ const amount =params.get('amount');
 
 //引数に商品IDを受け取ると、対応した商品データのObjectを返す関数を書く
 const items = (productID, amount) => {
-//要修正
     if(arrayObject[productID - 1] === undefined){
         console.log("404");
     }else if(amount == 0){
