@@ -1,8 +1,8 @@
 const express = require('express');
-/*const res = require('express/lib/response');
-const { json } = require('express/lib/response');*/
 const app = express();
 const PORT = 3000;
+/*const res = require('express/lib/response');
+const { json } = require('express/lib/response');*/
 
 //Json返却
 app.get("/http://localhost:3000/api/cart?product_id=2&amount=1", (req, res) => {
