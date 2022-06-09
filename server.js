@@ -3,40 +3,38 @@ const app = express();
 const PORT = 3000;
 /*const res = require('express/lib/response');
 const { json } = require('express/lib/response');*/
-
+/*
 app.get("/", (req,res) => {
-    console.log("hello")
+    res.json({ id: 1, productName: 'T-Shirt', price: 4800})
 });
-
-const arrayObject = [
-    { id: 1, productName: 'T-Shirt', price: 4800},
-    { id: 2, productName: 'Jacket', price: 19800},
-    { id: 3, productName: 'Pants', price: 9800},
-];
-
+*/
 //Json返却
-app.get("/http://localhost:3000/api/cart", (req, res) => {
-    const url = new URL(req);
-    const params = new URLSearchParams(url.search);
-    const productId = params.get('product_id');
-    const amount =params.get('amount'); 
-    const items = (productID, amount) => {
-        if(arrayObject.find((v) => v.id === productId) === undefined){
+app.get("/api/cart", (req, res) => {
+    const arrayObject = [
+        { id: 1, productName: 'T-Shirt', price: 4800},
+        { id: 2, productName: 'Jacket', price: 19800},
+        { id: 3, productName: 'Pants', price: 9800},
+    ];
+    const productId = req.query.product_id;
+    const amount =req.query.amount; 
+    const items = (productId, amount) => {
+        const result = arrayObject.find((v) => v.id === productId);
+        if(result === undefined){
             res.sendStatus = (404);
-        }else if(amount == 0){
-            res.sendStatus = (404);
+        }else if(amount === 0){
+            console.log(`productName: ${result.productName},`);
+            console.log(`productId: ${productId},`);
         }else{
-            const result= arrayObject.find((v) => v.id === productId);
-            res.json(`productName: ${result.productName}`);
-            res.json(`productId: ${productId}`);
-            res.json(`subtotal: ${amount}`);
-            res.json(`price: ${result.price*amount}`);
+            console.log(`productName: ${result.productName},`);
+            console.log(`productId: ${productId},`);
+            console.log(`subtotal: ${amount},`);
+            console.log(`price: ${result.price*amount}`);
         }
     }
-    items(productId,amount)
-    res.json({items});
+    const jsonData = JSON.stringify(items);
+    res.json({jsonData});
 });
 
-app.listen(PORT, () => console.log("server listening on port"));
+app.listen(PORT, () => console.log("Application started"));
 
 
