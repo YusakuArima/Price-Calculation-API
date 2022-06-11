@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-//Json返却
 app.get("/api/cart", (req, res) => {
     const arrayObject = [
         { productName: 'T-Shirt', id: '1', price: 4800},
