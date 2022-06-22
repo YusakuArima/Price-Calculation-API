@@ -30,3 +30,6 @@ app.listen(PORT, () => console.log('Application started'));
 //
 
 
+/*レスポンスコード
+res.sendStatus = (404);*/
+
