@@ -1,11 +1,12 @@
 {
-  "name": "practice",
+  "name": "price-calculation-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./interfaces/routes/cart.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "start": "node ./interfaces/routes/cart.js",
+    "lint": "eslint api --fix"
   },
   "repository": {
     "type": "git",
