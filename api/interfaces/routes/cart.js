@@ -5,7 +5,7 @@ const PORT = 3000;
 const CartController = require('../controllers/CartController');
 
 app.get('/api/cart', (req, res) => {
-    // validate params (ミドルウェア的役割)
+    // validate params
     if (!req.query.product_id || !req.query.amount) {
         return res.sendStatus(404);
     }else{CartController.show(req, res)}

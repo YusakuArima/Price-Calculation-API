@@ -1,14 +1,13 @@
 //ProductServiceから必要なモデュールを呼ぶ。
-const ProductService = require('../../services/ProductService');
+const CartService = require('../../services/CartService');
 
 class CartController {
     static show(req, res) {
         try {
-            const product = ProductService.find(req.query.product_Id);
-            const total = calcTotal(product.price*req.query.amount)
-            res.status(200).send(...product, ...total);
+            const product = CartService.itemFind(req.query.product_id);
+            const total = CartService.calcTotal(product.price, req.query.amount);
+            res.status(200).send(product);
         } catch(e) {
-            //ここのエラーが出力されてしまう、、
             return res.sendStatus(404);
         }
     }

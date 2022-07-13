@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./interfaces/routes/cart.js",
-    "lint": "eslint api --fix"
+    "lint": "eslint --fix"
   },
   "repository": {
     "type": "git",
