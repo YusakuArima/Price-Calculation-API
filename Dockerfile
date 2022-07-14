@@ -1,14 +1,14 @@
 FROM node:14-alpine
 
-WORKDIR /app
+WORKDIR /api
 
-COPY package*.json ./
+COPY ./api/package*.json ./
 
 RUN apk add --update --no-cache git \
   curl \
   && npm install
 
-COPY . ./
+COPY ./api .
 
 ENV PORT 3000
 EXPOSE 3000

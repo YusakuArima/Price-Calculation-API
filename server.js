@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const app = express();
 const PORT = 3000;
@@ -26,10 +27,4 @@ app.get('/api/cart', (req, res) => {
     }});
 
 app.listen(PORT, () => console.log('Application started'));
-
-//
-
-
-/*レスポンスコード
-res.sendStatus = (404);*/
-
+*/
