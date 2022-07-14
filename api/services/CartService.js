@@ -11,6 +11,7 @@ itemFind: (productId) => {
 
 calcTotal: (itemPrice, itemAmount) => {
     const result = itemPrice*itemAmount;
-    return result;
+    const amountAndTotal = {amount: itemAmount, subtotal: result}
+    return amountAndTotal;
 }
 }
