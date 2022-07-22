@@ -12,3 +12,13 @@ services:
       HOST: 0.0.0.0
     ports:
       - '3000:3000'
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: Products
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password

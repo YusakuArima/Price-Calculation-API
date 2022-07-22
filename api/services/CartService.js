@@ -1,12 +1,20 @@
+const db = require('../models/index');
+
 module.exports = {
 // 商品を探すサービス
 itemFind: (productId) => {
-    const arrayObject = [
+    /*const arrayObject = [
         { productName: 'T-Shirt', id: '1', price: 4800},
         { productName: 'Jacket', id: '2', price: 19800},
         { productName: 'Pants', id: '3',  price: 9800},
     ];
     const items = arrayObject.find(v => v.id === productId);
+    */
+    const items = db.Products.findAll({
+        where: {
+        id : productId
+        }
+    })
     return items;},
 
 calcTotal: (itemPrice, itemAmount) => {
