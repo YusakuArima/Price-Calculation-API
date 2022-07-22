@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     id: {type: DataTypes.STRING,
     primaryKey: true},
     price: DataTypes.INTEGER
-  }, {
+  }, 
+  {
+    timestamps: false,
     sequelize,
     modelName: 'Products',
   });

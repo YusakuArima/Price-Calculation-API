@@ -2,9 +2,9 @@
 const CartService = require('../../services/CartService');
 
 class CartController {
-    static show(req, res) {
+    static async show(req, res) {
         try {
-            const product = CartService.itemFind(req.query.product_id);
+            const product = await CartService.itemFind(req.query.product_id);
             const total = CartService.calcTotal(product.price, req.query.amount);
             res.status(200).send({...product, ...total});
         } catch(e) {

@@ -2,24 +2,21 @@ const db = require('../models/index');
 
 module.exports = {
 // 商品を探すサービス
-itemFind: (productId) => {
-    /*const arrayObject = [
-        { productName: 'T-Shirt', id: '1', price: 4800},
-        { productName: 'Jacket', id: '2', price: 19800},
-        { productName: 'Pants', id: '3',  price: 9800},
-    ];
-    const items = arrayObject.find(v => v.id === productId);
-    */
-    const items = db.Products.findAll({
+itemFind: async (productId) => {
+    const items = await db.Products.findAll({
+        raw: true,
         where: {
         id : productId
         }
-    })
-    return items;},
+    }).then(results => {
+        return results;
+    }).catch(error => 
+        console.log(error));  
+    return items[0]},
 
 calcTotal: (itemPrice, itemAmount) => {
     const result = itemPrice*itemAmount;
     const amountAndTotal = {amount: itemAmount, subtotal: result}
     return amountAndTotal;
-}
+    }
 }
